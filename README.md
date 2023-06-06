@@ -1,1 +1,1 @@
-# freeCodeCamp - Celestial Bodies Database
+# freeCodeCamp - Projects
