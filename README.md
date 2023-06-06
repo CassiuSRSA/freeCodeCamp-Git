@@ -1,1 +1,1 @@
-# freeCodeCamp-Git
+# freeCodeCamp - Celestial Bodies Database
