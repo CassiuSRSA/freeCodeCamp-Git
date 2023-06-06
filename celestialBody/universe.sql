@@ -169,8 +169,8 @@ ALTER SEQUENCE public.planet_planet_id_seq OWNED BY public.planet.planet_id;
 
 CREATE TABLE public.species (
     species_id integer NOT NULL,
-    name character varying(50),
-    population integer,
+    name character varying(50) NOT NULL,
+    population integer NOT NULL,
     lifespan integer,
     dangerous boolean,
     description text
@@ -292,18 +292,53 @@ INSERT INTO public.galaxy VALUES (6, 'Whirlpool', 15, 3, 10521.30000, false, fal
 -- Data for Name: moon; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.moon VALUES (1, 'Luna', 102, 692, 0.30000, true, false, 5);
+INSERT INTO public.moon VALUES (2, 'Titan', 48, 160, 0.80000, true, false, 1);
+INSERT INTO public.moon VALUES (3, 'Europa', 67, 456, 0.50000, true, false, 12);
+INSERT INTO public.moon VALUES (4, 'Triton', 79, 384, 0.70000, true, false, 4);
+INSERT INTO public.moon VALUES (5, 'Ganymede', 124, 628, 0.90000, true, false, 2);
+INSERT INTO public.moon VALUES (6, 'Calisto', 96, 612, 0.60000, true, false, 3);
+INSERT INTO public.moon VALUES (7, 'lo', 53, 420, 0.40000, true, true, 2);
+INSERT INTO public.moon VALUES (8, 'Phobos', 17, 42, 0.20000, false, false, 5);
+INSERT INTO public.moon VALUES (9, 'Deimos', 8, 30, 0.10000, false, false, 4);
+INSERT INTO public.moon VALUES (10, 'Encladus', 35, 192, 0.30000, true, false, 10);
+INSERT INTO public.moon VALUES (11, 'Hyperion', 102, 692, 0.30000, true, false, 5);
+INSERT INTO public.moon VALUES (12, 'Charon', 48, 160, 0.80000, true, false, 1);
+INSERT INTO public.moon VALUES (13, 'Titania', 67, 456, 0.50000, true, false, 9);
+INSERT INTO public.moon VALUES (14, 'Oberon', 79, 384, 0.70000, true, false, 7);
+INSERT INTO public.moon VALUES (15, 'Umbriel', 124, 628, 0.90000, true, false, 8);
+INSERT INTO public.moon VALUES (16, 'Ariel', 96, 612, 0.60000, true, false, 7);
+INSERT INTO public.moon VALUES (17, 'Miranda', 53, 420, 0.40000, true, true, 6);
+INSERT INTO public.moon VALUES (18, 'Iapetus', 17, 42, 0.20000, false, false, 9);
+INSERT INTO public.moon VALUES (19, 'Rhea', 8, 30, 0.10000, false, false, 11);
+INSERT INTO public.moon VALUES (20, 'Mimas', 35, 192, 0.30000, true, false, 10);
 
 
 --
 -- Data for Name: planet; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.planet VALUES (1, 'Terra', 3, 1, 0.80000, true, false, 1);
+INSERT INTO public.planet VALUES (2, 'Veridian', 5, 2, 1.20000, false, true, 1);
+INSERT INTO public.planet VALUES (3, 'Novus', 1, 0, 0.50000, true, true, 2);
+INSERT INTO public.planet VALUES (4, 'Aurora', 2, 3, 0.90000, true, false, 3);
+INSERT INTO public.planet VALUES (5, 'Celestia', 4, 1, 1.50000, false, false, 4);
+INSERT INTO public.planet VALUES (6, 'Epsilon', 0, 0, 0.30000, false, false, 5);
+INSERT INTO public.planet VALUES (7, 'Paradisus', 3, 2, 1.10000, true, false, 6);
+INSERT INTO public.planet VALUES (8, 'Zephyr', 1, 0, 0.60000, false, true, 2);
+INSERT INTO public.planet VALUES (9, 'Seraphina', 2, 1, 0.70000, false, true, 5);
+INSERT INTO public.planet VALUES (10, 'Glactica', 0, 4, 1.30000, true, false, 4);
+INSERT INTO public.planet VALUES (11, 'Aquaterra', 3, 2, 0.90000, true, false, 1);
+INSERT INTO public.planet VALUES (12, 'Astralis', 1, 1, 0.80000, true, false, 2);
 
 
 --
 -- Data for Name: species; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.species VALUES (1, 'Humans', 7, 80, false, 'Sentient beings known for their adaptability');
+INSERT INTO public.species VALUES (2, 'Xelarans', 12, 150, false, 'Highly intelligent and technologically advanced');
+INSERT INTO public.species VALUES (3, 'Zorblorians', 5, 120, false, 'Peaceful species known for their artisitic talents');
 
 
 --
@@ -329,21 +364,21 @@ SELECT pg_catalog.setval('public.galaxy_galaxy_id_seq', 6, true);
 -- Name: moon_moon_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.moon_moon_id_seq', 1, false);
+SELECT pg_catalog.setval('public.moon_moon_id_seq', 20, true);
 
 
 --
 -- Name: planet_planet_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.planet_planet_id_seq', 1, false);
+SELECT pg_catalog.setval('public.planet_planet_id_seq', 12, true);
 
 
 --
 -- Name: species_species_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.species_species_id_seq', 1, false);
+SELECT pg_catalog.setval('public.species_species_id_seq', 3, true);
 
 
 --
@@ -399,6 +434,14 @@ ALTER TABLE ONLY public.planet
 
 ALTER TABLE ONLY public.planet
     ADD CONSTRAINT planet_pkey PRIMARY KEY (planet_id);
+
+
+--
+-- Name: species species_name_key; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.species
+    ADD CONSTRAINT species_name_key UNIQUE (name);
 
 
 --
